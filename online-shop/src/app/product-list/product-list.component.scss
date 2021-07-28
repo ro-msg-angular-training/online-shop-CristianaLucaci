@@ -1,0 +1,48 @@
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+table, tr:hover {
+    background-color: rgb(240, 233, 233);
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #5c8a9c;
+    color: white;
+}
+
+div.arrow {
+	width: 2vmin;
+	height: 2vmin;
+	position: absolute;
+	transform: rotate(45deg);
+	
+	&::before {
+		content: '';
+		width: 50%;
+		height: 50%;
+		border-width: .5vmin .5vmin 0 0;
+		border-style: solid;
+		border-color: #5032fd;
+		transition: .2s ease;
+		display: block;
+		transform-origin: 50% 0;
+	}
+	
+	&:hover::after {
+		border-color: #5ce99b;
+	}
+	&:hover::before {
+		border-color: #5ce99b;
+	}
+	
+}

@@ -14,7 +14,9 @@
             <td>{{product.name}}</td>
             <td>{{product.price}}</td>
             <td>
-                <div class="arrow"></div>
+               <a routerLink="/product/{{product.id}}">
+                    <div class="arrow"></div>
+               </a>
             </td>
         </tr>
     </table>

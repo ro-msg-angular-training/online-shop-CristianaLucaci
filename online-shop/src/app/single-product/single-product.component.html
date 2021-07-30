@@ -1,21 +1,44 @@
-<div *ngIf="product">
-    <h2>PRODUCT: {{product.name | uppercase}}</h2>
-    <table>
-        <tr>
-            <td>Name</td>
-            <td>{{product.name}}</td>
-        </tr>
-        <tr>
-            <td>Category</td>
-            <td>{{product.category}}</td>
-        </tr>
-        <tr>
-            <td>Price</td>
-            <td>{{product.price}}</td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td>{{product.description}}</td>
-        </tr>
-    </table>
+<div *ngIf="product" class="product-detail">
+    <div class="body">
+        <!--title and buttons-->
+        <div class="container">
+            <div class="left">
+                <h2 class="product-name">PRODUCT: {{product.name | uppercase}}</h2>
+            </div>
+            <div class="right">
+                <button id="edit" type="button" [routerLink]="['/products/edit', product.id]">EDIT</button>
+                <button (click)="deleteProduct()" class="btn-primary">Delete</button>
+            </div>
+        </div>
+
+        
+        <!--Table and image-->
+        <div class="columns">
+            <div class="body-left">
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{product.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>{{product.category}}</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>{{product.price}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{product.description}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="body-right">
+                <img src="{{product.image}}" class="product-image">
+            </div>
+        </div>
+
+    </div>
 </div>

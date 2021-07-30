@@ -28,4 +28,10 @@ export class SingleProductComponent implements OnInit {
   getProduct(): void {
     this.productService.getProduct(this.id).subscribe(product => this.product = product);
   }
+  editProduct() : void{
+
+  }
+  deleteProduct(): void{
+
+  }
 }

@@ -27,4 +27,11 @@ export class ProductService {
           `${environment.apiUrl}/products/${id}`
           );
     }
+
+    updateProduct(product: Product): Observable<void> {
+        return this.http.put<void>(
+          `${environment.apiUrl}/products/${product.id}`,
+          product
+        );
+      }
 }

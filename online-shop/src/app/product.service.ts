@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 
 import {Product} from './product';
-import { PRODUCTS } from './mock-products';
-import { MessageService } from './message.service';
 
-@Injectable({providedIn: 'root'})
+
+@Injectable({
+    providedIn: 'root',
+  })
 export class ProductService {
     
-    constructor(private messageService: MessageService){
-
-    }
+    constructor(
+        private http: HttpClient
+    ){}
 
     getProducts(): Observable<Product[]>{
-        const products = of(PRODUCTS);
-        this.messageService.add('ProductService: fetched products');
-
-        return products;
+        return this.http.get<Product[]>
+        (`${environment.apiUrl}/products`);
     }
 
     getProduct(id: number): Observable<Product>{
-        const product = PRODUCTS.find(
-            h => h.id === id
-        )!;
-        this.messageService.add('ProductService: fetched product id=${id}');
-        return of(product);
+        return this.http.get<Product>(
+          `${environment.apiUrl}/products/${id}`
+          );
     }
 }

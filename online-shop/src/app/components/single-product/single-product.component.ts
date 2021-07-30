@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product';
+import { Product } from '../../common/product';
 import {ActivatedRoute} from '@angular/router'
 import { Location } from '@angular/common';
-import { ProductService } from '../product.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-single-product',

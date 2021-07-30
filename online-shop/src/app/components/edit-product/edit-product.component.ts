@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Product} from "../product";
-import {ProductService} from "../product.service";
+import {Product} from "../../common/product";
+import {ProductService} from "../../services/product.service";
 
 
 enum EditorMode {

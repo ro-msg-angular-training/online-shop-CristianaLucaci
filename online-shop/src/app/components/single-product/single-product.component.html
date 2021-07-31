@@ -1,20 +1,20 @@
-<div *ngIf="product" class="product-detail">
-    <div>
-        <!--title and buttons-->
-        <div>
+<div *ngIf="product" >
+    <div class="row">
+        <div class="col-md-5">
             <div>
                 <h2>PRODUCT: {{product.name | uppercase}}</h2>
-            </div>
-            <div>
-                <button class="btn btn-primary"  [routerLink]="['/products/edit', product.id]">EDIT</button>
-                <button class="btn btn-primary">Delete</button>
+                <hr />
             </div>
         </div>
-
-        
-        <!--Table and image-->
-        <div class="columns">
-            <div class="body-left">
+        <div class="col-md-7">
+            <div id="buttons">
+                <button class="btn btn-primary"  [routerLink]="['/products/edit', product.id]">Edit</button>
+                <button class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-5">
                 <table>
                     <tr>
                         <td>Name</td>
@@ -24,23 +24,18 @@
                         <td>Category</td>
                         <td>{{product.category}}</td>
                     </tr>
-                    <tr>
-                        <td>Price</td>
-                        <td>{{product.price}}</td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>{{product.description}}</td>
-                    </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>{{product.price}}</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{product.description}}</td>
+                        </tr>
                 </table>
             </div>
-
-            <div class="body-right">
-                <img src="{{product.image}}" class="product-image">
+            <div class="col-md-7">
+                <img src="{{product.image}}" class="pimg-responsive" style="max-height: 300px;">
             </div>
-        </div>
-
     </div>
 </div>
-
-<button type="button" class="btn btn-primary">Primary</button>

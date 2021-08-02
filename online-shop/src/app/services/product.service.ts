@@ -19,19 +19,26 @@ export class ProductService {
 
     getProducts(): Observable<Product[]>{
         return this.http.get<Product[]>
-        (`${environment.apiUrl}/products`);
+        (`${environment.apiUrl}/products`)
+        .pipe(
+          catchError(this.handleError<Product[]>('getProducts', []))
+        );;
     }
 
     getProduct(id: number): Observable<Product>{
         return this.http.get<Product>(
           `${environment.apiUrl}/products/${id}`
+          ).pipe(
+            catchError(this.handleError<Product>(`getProduct id=${id}`))
           );
     }
 
-    updateProduct(product: Product): Observable<void> {
-        return this.http.put<void>(
+    updateProduct(product: Product): Observable<Product> {
+        return this.http.put<Product>(
           `${environment.apiUrl}/products/${product.id}`,
           product
+        ).pipe(
+          catchError(this.handleError('updateProduct/', product))
         );
     }
 
@@ -43,6 +50,16 @@ export class ProductService {
   }
 
   deleteProduct(id: number) {
-    return this.http.delete(`${environment.apiUrl}/products/${id}`);
+    return this.http.delete(`${environment.apiUrl}/products/${id}`)
+    .pipe(
+      catchError(this.handleError('deleteProduct'))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
   }
 }

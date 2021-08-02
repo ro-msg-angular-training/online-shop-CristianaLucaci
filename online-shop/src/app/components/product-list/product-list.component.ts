@@ -1,27 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../model/product';
-import {ProductService} from '../../services/product.service';
 
+import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
+
+import {AuthService} from "../../services/auth.service";
+import {IAppState} from "../../store/state/app.state";
+import {select, Store} from "@ngrx/store";
+import {GetProducts} from "../../store/actions/product.actions";
+import {selectProductList} from "../../store/selectors/product.selectors";
+import {selectAuthIsAdmin, selectAuthIsCustomer} from "../../store/selectors/auth.selectors";
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  providers: [ProductService],
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  
-  products: Product[] = [];
+  faShoppingCart = faShoppingCart;
+  faChevronRight = faChevronRight;
 
-  constructor(private productService: ProductService) { }
+  products$ = this.store.pipe(select(selectProductList));
 
-  ngOnInit() {
-    this.getProducts();
+  isCustomer$ = this.store.pipe(select(selectAuthIsCustomer));
+  isAdmin$ = this.store.pipe(select(selectAuthIsAdmin));
+
+  constructor(
+    private authService: AuthService,
+    private store: Store<IAppState>
+  ) { }
+
+  ngOnInit(): void {
+    this.loadProducts();
   }
-  getProducts() : void {
-    this.productService.getProducts().subscribe(
-      products => (this.products = products)
-    );
-  }
 
+  loadProducts(): void {
+    this.store.dispatch(new GetProducts());
+  }
 }

@@ -12,6 +12,15 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/reducers/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './store/effects/product.effects';
+import { CartEffects } from './store/effects/cart.effects';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthEffects } from './store/effects/auth.effects';
 
 @NgModule({
   declarations: [
@@ -28,6 +37,12 @@ import { AuthComponent } from './components/auth/auth.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([ProductEffects, CartEffects, AuthEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    AppRoutingModule,
+    FontAwesomeModule,
     ReactiveFormsModule
   ],
   providers: [],

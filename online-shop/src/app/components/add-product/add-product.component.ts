@@ -40,7 +40,7 @@ export class AddProductComponent implements OnInit {
   onCreateProduct(
     productData : Product
   ){
-    this.productService.createAndStoreProduct(productData);
+    this.productService.addProduct(productData);
   }
 
 }

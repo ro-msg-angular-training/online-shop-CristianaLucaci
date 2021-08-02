@@ -12,14 +12,14 @@ import {Product} from '../model/product';
     providedIn: 'root',
   })
 export class ProductService {
-    
+    private productsUrl = '/api/products';
     constructor(
         private http: HttpClient
     ){}
 
     getProducts(): Observable<Product[]>{
         return this.http.get<Product[]>
-        (`${environment.apiUrl}/products`)
+        (this.productsUrl)
         .pipe(
           catchError(this.handleError<Product[]>('getProducts', []))
         );;
@@ -27,7 +27,7 @@ export class ProductService {
 
     getProduct(id: number): Observable<Product>{
         return this.http.get<Product>(
-          `${environment.apiUrl}/products/${id}`
+          `${this.productsUrl}/${id}`
           ).pipe(
             catchError(this.handleError<Product>(`getProduct id=${id}`))
           );
@@ -35,22 +35,22 @@ export class ProductService {
 
     updateProduct(product: Product): Observable<Product> {
         return this.http.put<Product>(
-          `${environment.apiUrl}/products/${product.id}`,
+          `${this.productsUrl}/${product.id}`,
           product
         ).pipe(
           catchError(this.handleError('updateProduct/', product))
         );
     }
 
-    createAndStoreProduct(productData : Product){
-      this.http.post('http://localhost:3000/products', productData)
+    addProduct(productData : Product){
+      this.http.post(this.productsUrl, productData)
       .subscribe(responseData => {
       console.log(responseData);
     });
   }
 
   deleteProduct(id: number) {
-    return this.http.delete(`${environment.apiUrl}/products/${id}`)
+    return this.http.delete(`${this.productsUrl}/${id}`)
     .pipe(
       catchError(this.handleError('deleteProduct'))
     );

@@ -50,18 +50,6 @@ export class ProductEffects {
     );
   });
 
-  addProduct$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType<AddProduct>(EProductActions.AddProduct),
-      map((action) => action.payload),
-      switchMap((product) => this.productService.addProduct(product)),
-      switchMap((product) => {
-        this.router.navigate(['/products/', product.id]);
-        return of(new AddProductSuccess(product))
-      })
-    );
-  });
-
   updateProduct$ = createEffect(() => {
     return this.actions$.pipe(
       ofType<UpdateProduct>(EProductActions.UpdateProduct),

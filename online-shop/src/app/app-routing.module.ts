@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './components/auth/auth.guard';
+import { LoginComponent } from './components/auth/login/login.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { SingleProductComponent } from './components/single-product/single-product.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { AddProductComponent } from './components/add-product/add-product.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import {AuthGuard} from "./components/auth/auth.guard"
+
+
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'products/editor/:productId', component: EditProductComponent, canActivate: [AuthGuard], data: {roles: ["admin"]}},
   {path: '', redirectTo: '/products', pathMatch: 'full'},
   {path: '**', redirectTo: '/products', pathMatch: 'full'}
+
 ];
 
 @NgModule({

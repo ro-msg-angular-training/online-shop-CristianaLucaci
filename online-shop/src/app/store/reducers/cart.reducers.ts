@@ -16,24 +16,6 @@ export const cartReducers = (
       };
     }
 
-    case ECartActions.AddCartItem: {
-      let oldProduct = state.products.find(prod => prod.id === action.payload.id);
-      if (oldProduct === undefined) {
-        return {
-          ...state,
-          products: state.products.concat({...action.payload, quantity: 1})
-        };
-      }
-
-      return {
-        ...state,
-        products: state.products.map((prod) =>
-          prod.id === action.payload.id ? {...prod, quantity: prod.quantity + 1} : prod
-        )
-      };
-
-    }
-
     case ECartActions.PlaceOrderSuccess: {
       return {
         ...state,

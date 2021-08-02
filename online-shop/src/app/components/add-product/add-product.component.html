@@ -58,7 +58,14 @@
                     *ngIf = "!addProductForm?.valid && addProductForm?.touched"
                     class="help-block">Please enter valid data</span>
             <br>
-          <button class="btn btn-primary" type="submit">Submit</button>
+          <button
+          class="btn btn-primary" 
+          type="submit"
+          >Add</button>
+          <button
+          class="btn btn-primary" 
+          [routerLink]="['/products']"
+          >Go Back</button>
         </form>
       </div>
     </div>

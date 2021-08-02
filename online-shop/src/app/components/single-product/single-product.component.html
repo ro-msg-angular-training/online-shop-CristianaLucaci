@@ -8,8 +8,12 @@
         </div>
         <div class="col-md-7">
             <div id="buttons">
-                <button class="btn btn-primary"  [routerLink]="['/products/edit', product.id]">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-primary"  [routerLink]="['/product/edit/', product.id]">Edit</button>
+                <button
+                 class="btn btn-danger"
+                 [routerLink]="['/products']"
+                 (click)="deleteProduct()"
+                 >Delete</button>
             </div>
         </div>
     </div>

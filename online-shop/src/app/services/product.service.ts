@@ -33,5 +33,16 @@ export class ProductService {
           `${environment.apiUrl}/products/${product.id}`,
           product
         );
-      }
+    }
+
+    createAndStoreProduct(productData : Product){
+      this.http.post('http://localhost:3000/products', productData)
+      .subscribe(responseData => {
+      console.log(responseData);
+    });
+  }
+
+  deleteProduct(id: number) {
+    return this.http.delete(`${environment.apiUrl}/products/${id}`);
+  }
 }

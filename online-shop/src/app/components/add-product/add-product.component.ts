@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { Product } from 'src/app/model/product';
+import { ProductService } from 'src/app/services/product.service';
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -10,7 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
 
- constructor(private http: HttpClient) { 
+ constructor(private http: HttpClient, private productService: ProductService) { 
     this.addProductForm = new FormGroup({
       'name' : new FormControl(''),
       'category': new FormControl(''),
@@ -35,18 +38,9 @@ export class AddProductComponent implements OnInit {
   }
 
   onCreateProduct(
-    postaData:{
-      name : string;
-      category : string;
-      image : string;
-      price : Number;
-      description : string;
-    }
+    productData : Product
   ){
-    this.http.post('http://localhost:3000/products', postaData)
-    .subscribe(responseData => {
-      console.log(responseData);
-    });
+    this.productService.createAndStoreProduct(productData);
   }
 
 }

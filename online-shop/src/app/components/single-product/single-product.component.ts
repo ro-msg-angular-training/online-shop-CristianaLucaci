@@ -31,7 +31,9 @@ export class SingleProductComponent implements OnInit {
   editProduct() : void{
 
   }
-  deleteProduct(): void{
-
+  deleteProduct(): void {
+    this.productService.deleteProduct(this.id).subscribe(
+      () => {} 
+    )
   }
 }

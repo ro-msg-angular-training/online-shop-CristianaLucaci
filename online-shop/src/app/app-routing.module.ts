@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { SingleProductComponent } from './components/single-product/single-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { AddProductComponent } from './add-product/add-product.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/products', pathMatch:'full'},
